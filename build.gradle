@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group = 'org.example'
@@ -8,7 +9,9 @@ version = '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
-
+application {
+    mainClass = 'org.example.mainClasses.MainSerial' // Einstiegspunkt definieren
+}
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
@@ -16,4 +19,35 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+tasks.register('SerialClassifier', Jar) {
+    group = 'Build'
+    description = 'Erzeugt ein ausführbares JAR für Serial Version von KnnAlgo.'
+
+    manifest {
+        attributes(
+                'Main-Class': 'org.example.mainClasses.MainSerial'  // Main-Klasse für App1
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with jar
+    archiveFileName = "serialKnn.jar"  // Name des JARs
+}
+
+tasks.register('MultiThreadFineClassifier', Jar) {
+    group = 'Build'
+    description = 'Erzeugt ein ausführbares JAR für Fine Version von KnnAlgo.'
+    manifest {
+        attributes(
+                'Main-Class': 'org.example.mainClasses.MainMultiThreadFine'  // Main-Klasse für App1
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with jar
+    archiveFileName = "multiFineKnn.jar"  // Name des JARs
 }

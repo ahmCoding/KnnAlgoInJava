@@ -1,22 +1,20 @@
-package org.example.sequentialClassifier;
+package org.example.classifier;
 
 import org.example.datastructure.DataPoint;
 import org.example.datastructure.Distance;
-import org.example.helperClasses.DatasetLoader;
 import org.example.helperClasses.EuclideanDistance;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class KnnClassifier {
+public class SerialKnnClassifier {
     private final List<? extends DataPoint> dataset;
     private int k;
 
     /**
-     * @param data   gedadener Datensatz
+     * @param data   geladener Training-Datensatz
      * @param ktoSet Wert für K in KNN-Algorithm
      */
-    public KnnClassifier(List<? extends DataPoint> data, int ktoSet) {
+    public SerialKnnClassifier(List<? extends DataPoint> data, int ktoSet) {
         this.dataset = data;
         this.k = ktoSet;
     }
