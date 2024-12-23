@@ -51,3 +51,18 @@ tasks.register('MultiThreadFineClassifier', Jar) {
     with jar
     archiveFileName = "multiFineKnn.jar"  // Name des JARs
 }
+tasks.register('MultiThreadCoarseClassifier', Jar) {
+    group = 'Build'
+    description = 'Erzeugt ein ausführbares JAR für Coarse Version von KnnAlgo.'
+    manifest {
+        attributes(
+                'Main-Class': 'org.example.mainClasses.MainMultiThreadCoarse'  // Main-Klasse für App1
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with jar
+    archiveFileName = "multiCoarseKnn.jar"  // Name des JARs
+}
+

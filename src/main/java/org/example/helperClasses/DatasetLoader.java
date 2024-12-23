@@ -16,7 +16,7 @@ public class DatasetLoader {
     /**
      * Lädt den Datensatz
      *
-     * @param pathToLoad Pfad zur Dataei (jede Zeile stellt einen Datenpunkt dar und die
+     * @param pathToLoad Pfad zur Datei (jede Zeile stellt einen Datenpunkt dar und die
      *                   Eigenschaften sind durch ';' getrennt)
      * @return Datensatz in Form einer Liste
      */

@@ -1,15 +1,16 @@
 package org.example.mainClasses;
 
-import org.example.classifier.MultiThreadFineClassifier;
+import org.example.classifier.MultiThreadCoarseClassifier;
 import org.example.datastructure.BankMarketingDataPoint;
 import org.example.helperClasses.DatasetLoader;
 
+import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.List;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class MainMultiThreadFine {
+public class MainMultiThreadCoarse {
     public static void main(String[] args) {
         int k = Integer.parseInt(args[0]);
         boolean parallelSort = Boolean.parseBoolean(args[1]);
@@ -19,9 +20,9 @@ public class MainMultiThreadFine {
         List<BankMarketingDataPoint> datasetTest = loader.loadDataset("data/bank.test");
         System.out.println("Size of dataset train: " + datasetTrain.size() + " , test: " + datasetTest.size());
         long startTime = 0, endTime = 0;
-        MultiThreadFineClassifier classifier = new MultiThreadFineClassifier(datasetTrain, k);
+        MultiThreadCoarseClassifier classifier = new MultiThreadCoarseClassifier(datasetTrain, k);
         int success = 0;
-        String prediction;
+        String prediction = "";
         startTime = new Date().getTime();
         for (BankMarketingDataPoint dataPoint : datasetTest) {
             prediction = classifier.classify(dataPoint, parallelSort);
